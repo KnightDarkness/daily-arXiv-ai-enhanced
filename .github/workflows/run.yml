@@ -111,6 +111,13 @@ jobs:
         export MODEL_NAME="${{ vars.MODEL_NAME }}"
         
         python enhance.py --data ../data/${today}.jsonl
+
+        AI_FILE="../data/${today}_AI_enhanced_${LANGUAGE}.jsonl"
+
+        if [ ! -s "$AI_FILE" ]; then
+            echo "AI增强文件为空 / AI enhanced file is empty"
+            exit 1
+        fi
         
         # 检查AI处理是否成功 / Check if AI processing was successful
         if [ $? -ne 0 ]; then
